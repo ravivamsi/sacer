@@ -1,0 +1,492 @@
+[
+  {
+    "certName": "cert.WebServer.prd",
+    "dependentComponents": ["WebServer-01", "Database-01", "LoadBalancer-01", "SSL-01"],
+    "dn": "CN=CERT-001,OU=IT,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-03-15T00:00:00",
+    "lastUpdatedDate": "2025-01-15T10:30:00"
+  },
+  {
+    "certName": "cert.APIServer.dev",
+    "dependentComponents": ["APIServer-01", "Cache-01", "MessageQueue-01", "TLS-01"],
+    "dn": "CN=CERT-002,OU=Development,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-04-20T00:00:00",
+    "lastUpdatedDate": "2025-01-20T14:45:00"
+  },
+  {
+    "certName": "cert.FileServer.prd",
+    "dependentComponents": ["FileServer-01", "Backup-01", "Monitoring-01", "Encryption-01"],
+    "dn": "CN=CERT-003,OU=Operations,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-02-28T00:00:00",
+    "lastUpdatedDate": "2025-01-25T09:15:00"
+  },
+  {
+    "certName": "cert.AuthServer.dev",
+    "dependentComponents": ["AuthServer-01", "LDAP-01", "SSO-01", "PKI-01"],
+    "dn": "CN=CERT-004,OU=Security,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-05-10T00:00:00",
+    "lastUpdatedDate": "2025-01-30T16:20:00"
+  },
+  {
+    "certName": "cert.PaymentGateway.prd",
+    "dependentComponents": ["PaymentGateway-01", "Encryption-01", "Security-01", "PCI-01"],
+    "dn": "CN=CERT-005,OU=Finance,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-03-05T00:00:00",
+    "lastUpdatedDate": "2025-02-05T11:30:00"
+  },
+  {
+    "certName": "cert.EmailServer.dev",
+    "dependentComponents": ["EmailServer-01", "SMTP-01", "SpamFilter-01", "Mail-01"],
+    "dn": "CN=CERT-006,OU=Communication,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-06-15T00:00:00",
+    "lastUpdatedDate": "2025-02-10T13:45:00"
+  },
+  {
+    "certName": "cert.CDN.prd",
+    "dependentComponents": ["CDN-01", "StaticAssets-01", "ImageProcessor-01", "CDN-01"],
+    "dn": "CN=CERT-007,OU=Content,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-04-30T00:00:00",
+    "lastUpdatedDate": "2025-02-15T08:20:00"
+  },
+  {
+    "certName": "cert.SearchEngine.dev",
+    "dependentComponents": ["SearchEngine-01", "Indexer-01", "Crawler-01", "Search-01"],
+    "dn": "CN=CERT-008,OU=Search,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-07-20T00:00:00",
+    "lastUpdatedDate": "2025-02-20T15:10:00"
+  },
+  {
+    "certName": "cert.Analytics.prd",
+    "dependentComponents": ["Analytics-01", "DataProcessor-01", "Reporting-01", "Analytics-01"],
+    "dn": "CN=CERT-009,OU=Analytics,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-03-25T00:00:00",
+    "lastUpdatedDate": "2025-02-25T12:40:00"
+  },
+  {
+    "certName": "cert.Notification.dev",
+    "dependentComponents": ["Notification-01", "PushService-01", "SMS-01", "Notify-01"],
+    "dn": "CN=CERT-010,OU=Notifications,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-05-05T00:00:00",
+    "lastUpdatedDate": "2025-03-01T10:25:00"
+  },
+  {
+    "certName": "cert.Database.prd",
+    "dependentComponents": ["WebServer-02", "Database-02", "LoadBalancer-02", "SSL-02"],
+    "dn": "CN=CERT-011,OU=IT,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-08-10T00:00:00",
+    "lastUpdatedDate": "2025-03-05T14:15:00"
+  },
+  {
+    "certName": "cert.Cache.dev",
+    "dependentComponents": ["APIServer-02", "Cache-02", "MessageQueue-02", "TLS-02"],
+    "dn": "CN=CERT-012,OU=Development,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-04-15T00:00:00",
+    "lastUpdatedDate": "2025-03-10T09:30:00"
+  },
+  {
+    "certName": "cert.Backup.prd",
+    "dependentComponents": ["FileServer-02", "Backup-02", "Monitoring-02", "Encryption-02"],
+    "dn": "CN=CERT-013,OU=Operations,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-06-30T00:00:00",
+    "lastUpdatedDate": "2025-03-15T16:45:00"
+  },
+  {
+    "certName": "cert.LDAP.dev",
+    "dependentComponents": ["AuthServer-02", "LDAP-02", "SSO-02", "PKI-02"],
+    "dn": "CN=CERT-014,OU=Security,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-09-20T00:00:00",
+    "lastUpdatedDate": "2025-03-20T11:20:00"
+  },
+  {
+    "certName": "cert.Encryption.prd",
+    "dependentComponents": ["PaymentGateway-02", "Encryption-02", "Security-02", "PCI-02"],
+    "dn": "CN=CERT-015,OU=Finance,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-05-25T00:00:00",
+    "lastUpdatedDate": "2025-03-25T13:50:00"
+  },
+  {
+    "certName": "cert.SMTP.dev",
+    "dependentComponents": ["EmailServer-02", "SMTP-02", "SpamFilter-02", "Mail-02"],
+    "dn": "CN=CERT-016,OU=Communication,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-07-05T00:00:00",
+    "lastUpdatedDate": "2025-04-01T08:35:00"
+  },
+  {
+    "certName": "cert.StaticAssets.prd",
+    "dependentComponents": ["CDN-02", "StaticAssets-02", "ImageProcessor-02", "CDN-02"],
+    "dn": "CN=CERT-017,OU=Content,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-10-15T00:00:00",
+    "lastUpdatedDate": "2025-04-05T15:10:00"
+  },
+  {
+    "certName": "cert.Indexer.dev",
+    "dependentComponents": ["SearchEngine-02", "Indexer-02", "Crawler-02", "Search-02"],
+    "dn": "CN=CERT-018,OU=Search,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-06-10T00:00:00",
+    "lastUpdatedDate": "2025-04-10T12:25:00"
+  },
+  {
+    "certName": "cert.DataProcessor.prd",
+    "dependentComponents": ["Analytics-02", "DataProcessor-02", "Reporting-02", "Analytics-02"],
+    "dn": "CN=CERT-019,OU=Analytics,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-08-30T00:00:00",
+    "lastUpdatedDate": "2025-04-15T09:40:00"
+  },
+  {
+    "certName": "cert.PushService.dev",
+    "dependentComponents": ["Notification-02", "PushService-02", "SMS-02", "Notify-02"],
+    "dn": "CN=CERT-020,OU=Notifications,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-11-05T00:00:00",
+    "lastUpdatedDate": "2025-04-20T14:55:00"
+  },
+  {
+    "certName": "cert.LoadBalancer.prd",
+    "dependentComponents": ["WebServer-03", "Database-03", "LoadBalancer-03", "SSL-03"],
+    "dn": "CN=CERT-021,OU=IT,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-07-20T00:00:00",
+    "lastUpdatedDate": "2025-04-25T10:15:00"
+  },
+  {
+    "certName": "cert.MessageQueue.dev",
+    "dependentComponents": ["APIServer-03", "Cache-03", "MessageQueue-03", "TLS-03"],
+    "dn": "CN=CERT-022,OU=Development,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-09-10T00:00:00",
+    "lastUpdatedDate": "2025-05-01T16:30:00"
+  },
+  {
+    "certName": "cert.Monitoring.prd",
+    "dependentComponents": ["FileServer-03", "Backup-03", "Monitoring-03", "Encryption-03"],
+    "dn": "CN=CERT-023,OU=Operations,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-12-15T00:00:00",
+    "lastUpdatedDate": "2025-05-05T11:45:00"
+  },
+  {
+    "certName": "cert.SSO.dev",
+    "dependentComponents": ["AuthServer-03", "LDAP-03", "SSO-03", "PKI-03"],
+    "dn": "CN=CERT-024,OU=Security,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-08-05T00:00:00",
+    "lastUpdatedDate": "2025-05-10T13:20:00"
+  },
+  {
+    "certName": "cert.Security.prd",
+    "dependentComponents": ["PaymentGateway-03", "Encryption-03", "Security-03", "PCI-03"],
+    "dn": "CN=CERT-025,OU=Finance,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-10-30T00:00:00",
+    "lastUpdatedDate": "2025-05-15T08:35:00"
+  },
+  {
+    "certName": "cert.SpamFilter.dev",
+    "dependentComponents": ["EmailServer-03", "SMTP-03", "SpamFilter-03", "Mail-03"],
+    "dn": "CN=CERT-026,OU=Communication,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-01-15T00:00:00",
+    "lastUpdatedDate": "2025-05-20T15:50:00"
+  },
+  {
+    "certName": "cert.ImageProcessor.prd",
+    "dependentComponents": ["CDN-03", "StaticAssets-03", "ImageProcessor-03", "CDN-03"],
+    "dn": "CN=CERT-027,OU=Content,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-09-25T00:00:00",
+    "lastUpdatedDate": "2025-05-25T12:10:00"
+  },
+  {
+    "certName": "cert.Crawler.dev",
+    "dependentComponents": ["SearchEngine-03", "Indexer-03", "Crawler-03", "Search-03"],
+    "dn": "CN=CERT-028,OU=Search,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-11-20T00:00:00",
+    "lastUpdatedDate": "2025-06-01T09:25:00"
+  },
+  {
+    "certName": "cert.Reporting.prd",
+    "dependentComponents": ["Analytics-03", "DataProcessor-03", "Reporting-03", "Analytics-03"],
+    "dn": "CN=CERT-029,OU=Analytics,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-02-10T00:00:00",
+    "lastUpdatedDate": "2025-06-05T14:40:00"
+  },
+  {
+    "certName": "cert.SMS.dev",
+    "dependentComponents": ["Notification-03", "PushService-03", "SMS-03", "Notify-03"],
+    "dn": "CN=CERT-030,OU=Notifications,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-12-30T00:00:00",
+    "lastUpdatedDate": "2025-06-10T10:55:00"
+  },
+  {
+    "certName": "cert.WebApp.prd",
+    "dependentComponents": ["WebServer-04", "Database-04", "LoadBalancer-04", "SSL-04"],
+    "dn": "CN=CERT-031,OU=IT,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-03-20T00:00:00",
+    "lastUpdatedDate": "2025-06-15T16:15:00"
+  },
+  {
+    "certName": "cert.APIGateway.dev",
+    "dependentComponents": ["APIServer-04", "Cache-04", "MessageQueue-04", "TLS-04"],
+    "dn": "CN=CERT-032,OU=Development,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-05-15T00:00:00",
+    "lastUpdatedDate": "2025-06-20T11:30:00"
+  },
+  {
+    "certName": "cert.Storage.prd",
+    "dependentComponents": ["FileServer-04", "Backup-04", "Monitoring-04", "Encryption-04"],
+    "dn": "CN=CERT-033,OU=Operations,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-07-10T00:00:00",
+    "lastUpdatedDate": "2025-06-25T13:45:00"
+  },
+  {
+    "certName": "cert.Identity.dev",
+    "dependentComponents": ["AuthServer-04", "LDAP-04", "SSO-04", "PKI-04"],
+    "dn": "CN=CERT-034,OU=Security,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-09-05T00:00:00",
+    "lastUpdatedDate": "2025-07-01T08:20:00"
+  },
+  {
+    "certName": "cert.Finance.prd",
+    "dependentComponents": ["PaymentGateway-04", "Encryption-04", "Security-04", "PCI-04"],
+    "dn": "CN=CERT-035,OU=Finance,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-11-30T00:00:00",
+    "lastUpdatedDate": "2025-07-05T15:35:00"
+  },
+  {
+    "certName": "cert.Communication.dev",
+    "dependentComponents": ["EmailServer-04", "SMTP-04", "SpamFilter-04", "Mail-04"],
+    "dn": "CN=CERT-036,OU=Communication,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-01-25T00:00:00",
+    "lastUpdatedDate": "2025-07-10T12:50:00"
+  },
+  {
+    "certName": "cert.Content.prd",
+    "dependentComponents": ["CDN-04", "StaticAssets-04", "ImageProcessor-04", "CDN-04"],
+    "dn": "CN=CERT-037,OU=Content,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-04-10T00:00:00",
+    "lastUpdatedDate": "2025-07-15T09:15:00"
+  },
+  {
+    "certName": "cert.SearchAPI.dev",
+    "dependentComponents": ["SearchEngine-04", "Indexer-04", "Crawler-04", "Search-04"],
+    "dn": "CN=CERT-038,OU=Search,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-06-25T00:00:00",
+    "lastUpdatedDate": "2025-07-20T14:40:00"
+  },
+  {
+    "certName": "cert.BusinessIntelligence.prd",
+    "dependentComponents": ["Analytics-04", "DataProcessor-04", "Reporting-04", "Analytics-04"],
+    "dn": "CN=CERT-039,OU=Analytics,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-08-20T00:00:00",
+    "lastUpdatedDate": "2025-07-25T10:25:00"
+  },
+  {
+    "certName": "cert.Messaging.dev",
+    "dependentComponents": ["Notification-04", "PushService-04", "SMS-04", "Notify-04"],
+    "dn": "CN=CERT-040,OU=Notifications,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-10-15T00:00:00",
+    "lastUpdatedDate": "2025-08-01T16:55:00"
+  },
+  {
+    "certName": "cert.Microservice.prd",
+    "dependentComponents": ["WebServer-05", "Database-05", "LoadBalancer-05", "SSL-05"],
+    "dn": "CN=CERT-041,OU=IT,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-12-05T00:00:00",
+    "lastUpdatedDate": "2025-08-05T11:10:00"
+  },
+  {
+    "certName": "cert.CacheService.dev",
+    "dependentComponents": ["APIServer-05", "Cache-05", "MessageQueue-05", "TLS-05"],
+    "dn": "CN=CERT-042,OU=Development,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-02-20T00:00:00",
+    "lastUpdatedDate": "2025-08-10T13:35:00"
+  },
+  {
+    "certName": "cert.DataWarehouse.prd",
+    "dependentComponents": ["FileServer-05", "Backup-05", "Monitoring-05", "Encryption-05"],
+    "dn": "CN=CERT-043,OU=Operations,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-05-30T00:00:00",
+    "lastUpdatedDate": "2025-08-15T08:50:00"
+  },
+  {
+    "certName": "cert.AccessControl.dev",
+    "dependentComponents": ["AuthServer-05", "LDAP-05", "SSO-05", "PKI-05"],
+    "dn": "CN=CERT-044,OU=Security,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-07-25T00:00:00",
+    "lastUpdatedDate": "2025-08-20T15:15:00"
+  },
+  {
+    "certName": "cert.Cryptography.prd",
+    "dependentComponents": ["PaymentGateway-05", "Encryption-05", "Security-05", "PCI-05"],
+    "dn": "CN=CERT-045,OU=Finance,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-09-10T00:00:00",
+    "lastUpdatedDate": "2025-08-25T12:40:00"
+  },
+  {
+    "certName": "cert.MailService.dev",
+    "dependentComponents": ["EmailServer-05", "SMTP-05", "SpamFilter-05", "Mail-05"],
+    "dn": "CN=CERT-046,OU=Communication,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-11-05T00:00:00",
+    "lastUpdatedDate": "2025-09-01T09:25:00"
+  },
+  {
+    "certName": "cert.AssetManagement.prd",
+    "dependentComponents": ["CDN-05", "StaticAssets-05", "ImageProcessor-05", "CDN-05"],
+    "dn": "CN=CERT-047,OU=Content,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-01-30T00:00:00",
+    "lastUpdatedDate": "2025-09-05T14:55:00"
+  },
+  {
+    "certName": "cert.SearchEngine2.dev",
+    "dependentComponents": ["SearchEngine-05", "Indexer-05", "Crawler-05", "Search-05"],
+    "dn": "CN=CERT-048,OU=Search,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-03-15T00:00:00",
+    "lastUpdatedDate": "2025-09-10T10:30:00"
+  },
+  {
+    "certName": "cert.DataAnalytics.prd",
+    "dependentComponents": ["Analytics-05", "DataProcessor-05", "Reporting-05", "Analytics-05"],
+    "dn": "CN=CERT-049,OU=Analytics,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-06-20T00:00:00",
+    "lastUpdatedDate": "2025-09-15T16:45:00"
+  },
+  {
+    "certName": "cert.NotificationService2.dev",
+    "dependentComponents": ["Notification-05", "PushService-05", "SMS-05", "Notify-05"],
+    "dn": "CN=CERT-050,OU=Notifications,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-08-05T00:00:00",
+    "lastUpdatedDate": "2025-09-20T11:20:00"
+  },
+  {
+    "certName": "cert.WebService.prd",
+    "dependentComponents": ["WebServer-06", "Database-06", "LoadBalancer-06", "SSL-06"],
+    "dn": "CN=CERT-051,OU=IT,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-10-30T00:00:00",
+    "lastUpdatedDate": "2025-09-25T13:35:00"
+  },
+  {
+    "certName": "cert.APIService.dev",
+    "dependentComponents": ["APIServer-06", "Cache-06", "MessageQueue-06", "TLS-06"],
+    "dn": "CN=CERT-052,OU=Development,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-12-15T00:00:00",
+    "lastUpdatedDate": "2025-10-01T08:50:00"
+  },
+  {
+    "certName": "cert.FileStorage.prd",
+    "dependentComponents": ["FileServer-06", "Backup-06", "Monitoring-06", "Encryption-06"],
+    "dn": "CN=CERT-053,OU=Operations,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-02-10T00:00:00",
+    "lastUpdatedDate": "2025-10-05T15:10:00"
+  },
+  {
+    "certName": "cert.Authentication.dev",
+    "dependentComponents": ["AuthServer-06", "LDAP-06", "SSO-06", "PKI-06"],
+    "dn": "CN=CERT-054,OU=Security,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-04-25T00:00:00",
+    "lastUpdatedDate": "2025-10-10T12:25:00"
+  },
+  {
+    "certName": "cert.PaymentService.prd",
+    "dependentComponents": ["PaymentGateway-06", "Encryption-06", "Security-06", "PCI-06"],
+    "dn": "CN=CERT-055,OU=Finance,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-07-10T00:00:00",
+    "lastUpdatedDate": "2025-10-15T09:40:00"
+  },
+  {
+    "certName": "cert.EmailService.dev",
+    "dependentComponents": ["EmailServer-06", "SMTP-06", "SpamFilter-06", "Mail-06"],
+    "dn": "CN=CERT-056,OU=Communication,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-09-25T00:00:00",
+    "lastUpdatedDate": "2025-10-20T14:55:00"
+  },
+  {
+    "certName": "cert.ContentDelivery.prd",
+    "dependentComponents": ["CDN-06", "StaticAssets-06", "ImageProcessor-06", "CDN-06"],
+    "dn": "CN=CERT-057,OU=Content,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-11-20T00:00:00",
+    "lastUpdatedDate": "2025-10-25T10:15:00"
+  },
+  {
+    "certName": "cert.SearchService.dev",
+    "dependentComponents": ["SearchEngine-06", "Indexer-06", "Crawler-06", "Search-06"],
+    "dn": "CN=CERT-058,OU=Search,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-01-05T00:00:00",
+    "lastUpdatedDate": "2025-11-01T16:30:00"
+  },
+  {
+    "certName": "cert.BusinessAnalytics.prd",
+    "dependentComponents": ["Analytics-06", "DataProcessor-06", "Reporting-06", "Analytics-06"],
+    "dn": "CN=CERT-059,OU=Analytics,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-03-30T00:00:00",
+    "lastUpdatedDate": "2025-11-05T11:45:00"
+  },
+  {
+    "certName": "cert.MessagingService.dev",
+    "dependentComponents": ["Notification-06", "PushService-06", "SMS-06", "Notify-06"],
+    "dn": "CN=CERT-060,OU=Notifications,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-06-15T00:00:00",
+    "lastUpdatedDate": "2025-11-10T13:20:00"
+  },
+  {
+    "certName": "cert.ApplicationServer.prd",
+    "dependentComponents": ["WebServer-07", "Database-07", "LoadBalancer-07", "SSL-07"],
+    "dn": "CN=CERT-061,OU=IT,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-08-30T00:00:00",
+    "lastUpdatedDate": "2025-11-15T08:35:00"
+  },
+  {
+    "certName": "cert.CacheServer.dev",
+    "dependentComponents": ["APIServer-07", "Cache-07", "MessageQueue-07", "TLS-07"],
+    "dn": "CN=CERT-062,OU=Development,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-10-15T00:00:00",
+    "lastUpdatedDate": "2025-11-20T15:50:00"
+  },
+  {
+    "certName": "cert.StorageService.prd",
+    "dependentComponents": ["FileServer-07", "Backup-07", "Monitoring-07", "Encryption-07"],
+    "dn": "CN=CERT-063,OU=Operations,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-12-30T00:00:00",
+    "lastUpdatedDate": "2025-11-25T12:10:00"
+  },
+  {
+    "certName": "cert.IdentityService.dev",
+    "dependentComponents": ["AuthServer-07", "LDAP-07", "SSO-07", "PKI-07"],
+    "dn": "CN=CERT-064,OU=Security,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-02-05T00:00:00",
+    "lastUpdatedDate": "2025-12-01T09:25:00"
+  },
+  {
+    "certName": "cert.FinancialService.prd",
+    "dependentComponents": ["PaymentGateway-07", "Encryption-07", "Security-07", "PCI-07"],
+    "dn": "CN=CERT-065,OU=Finance,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-05-20T00:00:00",
+    "lastUpdatedDate": "2025-12-05T14:40:00"
+  },
+  {
+    "certName": "cert.CommunicationService.dev",
+    "dependentComponents": ["EmailServer-07", "SMTP-07", "SpamFilter-07", "Mail-07"],
+    "dn": "CN=CERT-066,OU=Communication,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-07-05T00:00:00",
+    "lastUpdatedDate": "2025-12-10T10:55:00"
+  },
+  {
+    "certName": "cert.ContentService.prd",
+    "dependentComponents": ["CDN-07", "StaticAssets-07", "ImageProcessor-07", "CDN-07"],
+    "dn": "CN=CERT-067,OU=Content,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-09-20T00:00:00",
+    "lastUpdatedDate": "2025-12-15T16:15:00"
+  },
+  {
+    "certName": "cert.SearchEngineService.dev",
+    "dependentComponents": ["SearchEngine-07", "Indexer-07", "Crawler-07", "Search-07"],
+    "dn": "CN=CERT-068,OU=Search,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-11-10T00:00:00",
+    "lastUpdatedDate": "2025-12-20T11:30:00"
+  },
+  {
+    "certName": "cert.AnalyticsService.prd",
+    "dependentComponents": ["Analytics-07", "DataProcessor-07", "Reporting-07", "Analytics-07"],
+    "dn": "CN=CERT-069,OU=Analytics,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-01-25T00:00:00",
+    "lastUpdatedDate": "2025-12-25T13:45:00"
+  },
+  {
+    "certName": "cert.NotificationService.dev",
+    "dependentComponents": ["Notification-07", "PushService-07", "SMS-07", "Notify-07"],
+    "dn": "CN=CERT-070,OU=Notifications,O=Company,DC=example,DC=com",
+    "expiryDate": "2025-04-10T00:00:00",
+    "lastUpdatedDate": "2025-12-30T08:20:00"
+  }
+]

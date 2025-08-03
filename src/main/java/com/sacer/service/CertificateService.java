@@ -58,6 +58,9 @@ public class CertificateService {
     }
     
     public void saveAllCertificates(List<Certificate> certificates) {
+        // Clear existing data first
+        certificateRepository.deleteAll();
+        // Save new data
         certificateRepository.saveAll(certificates);
     }
 } 

@@ -2,6 +2,7 @@ package com.sacer.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.sacer.entity.ServiceAccount;
 import com.sacer.entity.Certificate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,13 @@ public class DataLoaderService {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final Random random = new Random();
     
+    public DataLoaderService() {
+        // Configure ObjectMapper to handle Java 8 date/time types
+        objectMapper.registerModule(new JavaTimeModule());
+        // Configure ObjectMapper to ignore unknown properties
+        objectMapper.configure(com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    }
+    
     @Scheduled(fixedRate = 300000) // 5 minutes = 300000 milliseconds
     public void loadMockData() {
         try {
@@ -39,51 +47,52 @@ public class DataLoaderService {
     
     private void loadServiceAccounts() {
         try {
-            // Generate 50 mock service accounts
-            for (int i = 1; i <= 50; i++) {
-                ServiceAccount sa = new ServiceAccount();
-                sa.setSaName("SA-" + String.format("%03d", i));
-                sa.setDependentComponents(List.of(
-                    "Component-" + (i % 10 + 1),
-                    "Service-" + (i % 5 + 1),
-                    "App-" + (i % 3 + 1)
-                ));
-                
-                // Random expiry date between 1 and 365 days from now
-                int daysToExpire = random.nextInt(365) + 1;
+            // Load service accounts from JSON file
+            ClassPathResource resource = new ClassPathResource("sa.json");
+            
+            List<ServiceAccount> serviceAccounts = objectMapper.readValue(
+                resource.getInputStream(),
+                new TypeReference<List<ServiceAccount>>() {}
+            );
+            
+            // Update expiry dates with random days to expire (20-180 days)
+            for (ServiceAccount sa : serviceAccounts) {
+                int daysToExpire = random.nextInt(161) + 20; // 20 to 180 days
                 sa.setExpiryDate(LocalDateTime.now().plusDays(daysToExpire));
                 sa.setLastUpdatedDate(LocalDateTime.now().minusDays(random.nextInt(30)));
-                
-                serviceAccountService.saveServiceAccount(sa);
             }
+            
+            // Clear existing data and save new data
+            serviceAccountService.saveAllServiceAccounts(serviceAccounts);
+            System.out.println("Loaded " + serviceAccounts.size() + " service accounts with random expiry dates (20-180 days)");
         } catch (Exception e) {
-            System.err.println("Error loading service accounts: " + e.getMessage());
+            System.err.println("Error loading service accounts from JSON: " + e.getMessage());
+            e.printStackTrace();
         }
     }
     
     private void loadCertificates() {
         try {
-            // Generate 50 mock certificates
-            for (int i = 1; i <= 50; i++) {
-                Certificate cert = new Certificate();
-                cert.setCertName("CERT-" + String.format("%03d", i));
-                cert.setDependentComponents(List.of(
-                    "Component-" + (i % 10 + 1),
-                    "Service-" + (i % 5 + 1),
-                    "App-" + (i % 3 + 1),
-                    "Module-" + (i % 7 + 1)
-                ));
-                cert.setDn("CN=CERT-" + String.format("%03d", i) + ",OU=IT,O=Company,DC=example,DC=com");
-                
-                // Random expiry date between 1 and 365 days from now
-                int daysToExpire = random.nextInt(365) + 1;
+            // Load certificates from JSON file
+            ClassPathResource resource = new ClassPathResource("cert.json");
+            List<Certificate> certificates = objectMapper.readValue(
+                resource.getInputStream(),
+                new TypeReference<List<Certificate>>() {}
+            );
+            
+            // Update expiry dates with random days to expire (20-180 days)
+            for (Certificate cert : certificates) {
+                int daysToExpire = random.nextInt(161) + 20; // 20 to 180 days
                 cert.setExpiryDate(LocalDateTime.now().plusDays(daysToExpire));
                 cert.setLastUpdatedDate(LocalDateTime.now().minusDays(random.nextInt(30)));
-                
-                certificateService.saveCertificate(cert);
             }
+            
+            // Clear existing data and save new data
+            certificateService.saveAllCertificates(certificates);
+            System.out.println("Loaded " + certificates.size() + " certificates with random expiry dates (20-180 days)");
         } catch (Exception e) {
-            System.err.println("Error loading certificates: " + e.getMessage());
+            System.err.println("Error loading certificates from JSON: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 } 

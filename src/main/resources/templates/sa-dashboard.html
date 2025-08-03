@@ -21,6 +21,58 @@
         }
         .btn-rotate {
             min-width: 120px;
+            position: relative;
+            z-index: 1;
+            pointer-events: auto !important;
+        }
+        .btn-rotate.disabled {
+            opacity: 0.6;
+            cursor: pointer !important;
+            pointer-events: auto !important;
+        }
+        .btn-rotate.enabled {
+            opacity: 1;
+            cursor: pointer;
+        }
+        .btn-rotate.loading {
+            position: relative;
+        }
+        .btn-rotate.loading .btn-text {
+            visibility: hidden;
+        }
+        .btn-rotate.loading::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            margin: auto;
+            border: 2px solid transparent;
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .btn-rotate.success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn-rotate.success .btn-text {
+            visibility: hidden;
+        }
+        .btn-rotate.success::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+        }
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
         .filter-section {
             background-color: #f8f9fa;
@@ -150,7 +202,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="rotatePasswordBtn" disabled>Rotate Password</button>
+                    <button type="button" class="btn btn-primary" id="rotatePasswordBtn" disabled>Rotate SA</button>
                 </div>
             </div>
         </div>
@@ -161,6 +213,7 @@
     <script>
         let currentSaId = null;
         let passwordModal = null;
+        let validatedSAs = new Set();
 
         $(document).ready(function() {
             passwordModal = new bootstrap.Modal(document.getElementById('passwordModal'));
@@ -175,6 +228,20 @@
             $('#rotatePasswordBtn').click(function() {
                 if (currentSaId && $('#passwordInput').val()) {
                     rotatePassword(currentSaId, $('#passwordInput').val());
+                }
+            });
+            
+            // Test button clickability
+            $(document).on('click', '.btn-rotate', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Button clicked:', $(this).attr('onclick'));
+                console.log('Button data-sa-id:', $(this).data('sa-id'));
+                
+                // Get the SA ID and call the handler
+                const saId = $(this).data('sa-id');
+                if (saId) {
+                    handleRotateSAClick(saId);
                 }
             });
         });
@@ -238,14 +305,25 @@
                         <td class="${statusClass}">${statusText}</td>
                         <td>${lastUpdated}</td>
                         <td>
-                            <button class="btn btn-sm btn-primary btn-rotate" onclick="openPasswordModal(${sa.id})">
-                                <i class="fas fa-key me-1"></i>Rotate Password
+                            <button class="btn btn-sm btn-primary btn-rotate disabled" data-sa-id="${sa.id}" type="button">
+                                <span class="btn-text"><i class="fas fa-key me-1"></i>Rotate SA</span>
                             </button>
                         </td>
                     </tr>
                 `;
                 tbody.append(row);
             });
+        }
+
+        function handleRotateSAClick(saId) {
+            console.log('Rotate SA clicked for ID:', saId);
+            if (validatedSAs.has(saId)) {
+                // If already validated, start the rotation process
+                startRotationProcess(saId);
+            } else {
+                // If not validated, show password modal
+                openPasswordModal(saId);
+            }
         }
 
         function openPasswordModal(saId) {
@@ -286,16 +364,41 @@
             $.post(`/api/service-accounts/${saId}/rotate-password`, { password: password })
                 .done(function(data) {
                     passwordModal.hide();
-                    loadServiceAccounts();
-                    showAlert('Password rotated successfully!', 'success');
+                    // Mark this SA as validated and enable the button
+                    validatedSAs.add(saId);
+                    enableSAButton(saId);
+                    showAlert('Password validated! SA button is now enabled.', 'success');
                 })
                 .fail(function(xhr) {
                     if (xhr.status === 400) {
                         showAlert('Invalid password format!', 'danger');
                     } else {
-                        showAlert('Error rotating password!', 'danger');
+                        showAlert('Error validating password!', 'danger');
                     }
                 });
+        }
+
+        function startRotationProcess(saId) {
+            const button = $(`button[data-sa-id="${saId}"]`);
+            
+            // Show loading state
+            button.removeClass('enabled').addClass('loading');
+            
+            // Simulate 5-second process
+            setTimeout(function() {
+                button.removeClass('loading').addClass('success');
+                
+                // Reset to enabled state after 2 seconds
+                setTimeout(function() {
+                    button.removeClass('success').addClass('enabled');
+                    showAlert('SA rotated successfully!', 'success');
+                }, 2000);
+            }, 5000);
+        }
+
+        function enableSAButton(saId) {
+            const button = $(`button[data-sa-id="${saId}"]`);
+            button.removeClass('disabled').addClass('enabled');
         }
 
         function clearFilters() {

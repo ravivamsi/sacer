@@ -59,6 +59,9 @@ public class ServiceAccountService {
     }
     
     public void saveAllServiceAccounts(List<ServiceAccount> serviceAccounts) {
+        // Clear existing data first
+        serviceAccountRepository.deleteAll();
+        // Save new data
         serviceAccountRepository.saveAll(serviceAccounts);
     }
 } 

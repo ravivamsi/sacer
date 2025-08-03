@@ -1,0 +1,424 @@
+[
+  {
+    "saName": "sa.WebServer.prd",
+    "dependentComponents": ["WebServer-01", "Database-01", "LoadBalancer-01"],
+    "expiryDate": "2025-03-15T00:00:00",
+    "lastUpdatedDate": "2025-01-15T10:30:00",
+    "daysToExpire": 45
+  },
+  {
+    "saName": "sa.APIServer.dev",
+    "dependentComponents": ["APIServer-01", "Cache-01", "MessageQueue-01"],
+    "expiryDate": "2025-04-20T00:00:00",
+    "lastUpdatedDate": "2025-01-20T14:45:00",
+    "daysToExpire": 67
+  },
+  {
+    "saName": "sa.FileServer.prd",
+    "dependentComponents": ["FileServer-01", "Backup-01", "Monitoring-01"],
+    "expiryDate": "2025-02-28T00:00:00",
+    "lastUpdatedDate": "2025-01-25T09:15:00"
+  },
+  {
+    "saName": "sa.AuthServer.dev",
+    "dependentComponents": ["AuthServer-01", "LDAP-01", "SSO-01"],
+    "expiryDate": "2025-05-10T00:00:00",
+    "lastUpdatedDate": "2025-01-30T16:20:00"
+  },
+  {
+    "saName": "sa.PaymentGateway.prd",
+    "dependentComponents": ["PaymentGateway-01", "Encryption-01", "Security-01"],
+    "expiryDate": "2025-03-05T00:00:00",
+    "lastUpdatedDate": "2025-02-05T11:30:00"
+  },
+  {
+    "saName": "sa.EmailServer.dev",
+    "dependentComponents": ["EmailServer-01", "SMTP-01", "SpamFilter-01"],
+    "expiryDate": "2025-06-15T00:00:00",
+    "lastUpdatedDate": "2025-02-10T13:45:00"
+  },
+  {
+    "saName": "sa.CDN.prd",
+    "dependentComponents": ["CDN-01", "StaticAssets-01", "ImageProcessor-01"],
+    "expiryDate": "2025-04-30T00:00:00",
+    "lastUpdatedDate": "2025-02-15T08:20:00"
+  },
+  {
+    "saName": "sa.SearchEngine.dev",
+    "dependentComponents": ["SearchEngine-01", "Indexer-01", "Crawler-01"],
+    "expiryDate": "2025-07-20T00:00:00",
+    "lastUpdatedDate": "2025-02-20T15:10:00"
+  },
+  {
+    "saName": "sa.Analytics.prd",
+    "dependentComponents": ["Analytics-01", "DataProcessor-01", "Reporting-01"],
+    "expiryDate": "2025-03-25T00:00:00",
+    "lastUpdatedDate": "2025-02-25T12:40:00"
+  },
+  {
+    "saName": "sa.Notification.dev",
+    "dependentComponents": ["Notification-01", "PushService-01", "SMS-01"],
+    "expiryDate": "2025-05-05T00:00:00",
+    "lastUpdatedDate": "2025-03-01T10:25:00"
+  },
+  {
+    "saName": "sa.Database.prd",
+    "dependentComponents": ["WebServer-02", "Database-02", "LoadBalancer-02"],
+    "expiryDate": "2025-08-10T00:00:00",
+    "lastUpdatedDate": "2025-03-05T14:15:00"
+  },
+  {
+    "saName": "sa.Cache.dev",
+    "dependentComponents": ["APIServer-02", "Cache-02", "MessageQueue-02"],
+    "expiryDate": "2025-04-15T00:00:00",
+    "lastUpdatedDate": "2025-03-10T09:30:00"
+  },
+  {
+    "saName": "sa.Backup.prd",
+    "dependentComponents": ["FileServer-02", "Backup-02", "Monitoring-02"],
+    "expiryDate": "2025-06-30T00:00:00",
+    "lastUpdatedDate": "2025-03-15T16:45:00"
+  },
+  {
+    "saName": "sa.LDAP.dev",
+    "dependentComponents": ["AuthServer-02", "LDAP-02", "SSO-02"],
+    "expiryDate": "2025-09-20T00:00:00",
+    "lastUpdatedDate": "2025-03-20T11:20:00"
+  },
+  {
+    "saName": "sa.Encryption.prd",
+    "dependentComponents": ["PaymentGateway-02", "Encryption-02", "Security-02"],
+    "expiryDate": "2025-05-25T00:00:00",
+    "lastUpdatedDate": "2025-03-25T13:50:00"
+  },
+  {
+    "saName": "sa.SMTP.dev",
+    "dependentComponents": ["EmailServer-02", "SMTP-02", "SpamFilter-02"],
+    "expiryDate": "2025-07-05T00:00:00",
+    "lastUpdatedDate": "2025-04-01T08:35:00"
+  },
+  {
+    "saName": "sa.StaticAssets.prd",
+    "dependentComponents": ["CDN-02", "StaticAssets-02", "ImageProcessor-02"],
+    "expiryDate": "2025-10-15T00:00:00",
+    "lastUpdatedDate": "2025-04-05T15:10:00"
+  },
+  {
+    "saName": "sa.Indexer.dev",
+    "dependentComponents": ["SearchEngine-02", "Indexer-02", "Crawler-02"],
+    "expiryDate": "2025-06-10T00:00:00",
+    "lastUpdatedDate": "2025-04-10T12:25:00"
+  },
+  {
+    "saName": "sa.DataProcessor.prd",
+    "dependentComponents": ["Analytics-02", "DataProcessor-02", "Reporting-02"],
+    "expiryDate": "2025-08-30T00:00:00",
+    "lastUpdatedDate": "2025-04-15T09:40:00"
+  },
+  {
+    "saName": "sa.PushService.dev",
+    "dependentComponents": ["Notification-02", "PushService-02", "SMS-02"],
+    "expiryDate": "2025-11-05T00:00:00",
+    "lastUpdatedDate": "2025-04-20T14:55:00"
+  },
+  {
+    "saName": "sa.LoadBalancer.prd",
+    "dependentComponents": ["WebServer-03", "Database-03", "LoadBalancer-03"],
+    "expiryDate": "2025-07-20T00:00:00",
+    "lastUpdatedDate": "2025-04-25T10:15:00"
+  },
+  {
+    "saName": "sa.MessageQueue.dev",
+    "dependentComponents": ["APIServer-03", "Cache-03", "MessageQueue-03"],
+    "expiryDate": "2025-09-10T00:00:00",
+    "lastUpdatedDate": "2025-05-01T16:30:00"
+  },
+  {
+    "saName": "sa.Monitoring.prd",
+    "dependentComponents": ["FileServer-03", "Backup-03", "Monitoring-03"],
+    "expiryDate": "2025-12-15T00:00:00",
+    "lastUpdatedDate": "2025-05-05T11:45:00"
+  },
+  {
+    "saName": "sa.SSO.dev",
+    "dependentComponents": ["AuthServer-03", "LDAP-03", "SSO-03"],
+    "expiryDate": "2025-08-05T00:00:00",
+    "lastUpdatedDate": "2025-05-10T13:20:00"
+  },
+  {
+    "saName": "sa.Security.prd",
+    "dependentComponents": ["PaymentGateway-03", "Encryption-03", "Security-03"],
+    "expiryDate": "2025-10-30T00:00:00",
+    "lastUpdatedDate": "2025-05-15T08:35:00"
+  },
+  {
+    "saName": "sa.SpamFilter.dev",
+    "dependentComponents": ["EmailServer-03", "SMTP-03", "SpamFilter-03"],
+    "expiryDate": "2025-01-15T00:00:00",
+    "lastUpdatedDate": "2025-05-20T15:50:00"
+  },
+  {
+    "saName": "sa.ImageProcessor.prd",
+    "dependentComponents": ["CDN-03", "StaticAssets-03", "ImageProcessor-03"],
+    "expiryDate": "2025-09-25T00:00:00",
+    "lastUpdatedDate": "2025-05-25T12:10:00"
+  },
+  {
+    "saName": "sa.Crawler.dev",
+    "dependentComponents": ["SearchEngine-03", "Indexer-03", "Crawler-03"],
+    "expiryDate": "2025-11-20T00:00:00",
+    "lastUpdatedDate": "2025-06-01T09:25:00"
+  },
+  {
+    "saName": "sa.Reporting.prd",
+    "dependentComponents": ["Analytics-03", "DataProcessor-03", "Reporting-03"],
+    "expiryDate": "2025-02-10T00:00:00",
+    "lastUpdatedDate": "2025-06-05T14:40:00"
+  },
+  {
+    "saName": "sa.SMS.dev",
+    "dependentComponents": ["Notification-03", "PushService-03", "SMS-03"],
+    "expiryDate": "2025-12-30T00:00:00",
+    "lastUpdatedDate": "2025-06-10T10:55:00"
+  },
+  {
+    "saName": "sa.WebApp.prd",
+    "dependentComponents": ["WebServer-04", "Database-04", "LoadBalancer-04"],
+    "expiryDate": "2025-03-20T00:00:00",
+    "lastUpdatedDate": "2025-06-15T16:15:00"
+  },
+  {
+    "saName": "sa.APIGateway.dev",
+    "dependentComponents": ["APIServer-04", "Cache-04", "MessageQueue-04"],
+    "expiryDate": "2025-05-15T00:00:00",
+    "lastUpdatedDate": "2025-06-20T11:30:00"
+  },
+  {
+    "saName": "sa.Storage.prd",
+    "dependentComponents": ["FileServer-04", "Backup-04", "Monitoring-04"],
+    "expiryDate": "2025-07-10T00:00:00",
+    "lastUpdatedDate": "2025-06-25T13:45:00"
+  },
+  {
+    "saName": "sa.Identity.dev",
+    "dependentComponents": ["AuthServer-04", "LDAP-04", "SSO-04"],
+    "expiryDate": "2025-09-05T00:00:00",
+    "lastUpdatedDate": "2025-07-01T08:20:00"
+  },
+  {
+    "saName": "sa.Finance.prd",
+    "dependentComponents": ["PaymentGateway-04", "Encryption-04", "Security-04"],
+    "expiryDate": "2025-11-30T00:00:00",
+    "lastUpdatedDate": "2025-07-05T15:35:00"
+  },
+  {
+    "saName": "sa.Communication.dev",
+    "dependentComponents": ["EmailServer-04", "SMTP-04", "SpamFilter-04"],
+    "expiryDate": "2025-01-25T00:00:00",
+    "lastUpdatedDate": "2025-07-10T12:50:00"
+  },
+  {
+    "saName": "sa.Content.prd",
+    "dependentComponents": ["CDN-04", "StaticAssets-04", "ImageProcessor-04"],
+    "expiryDate": "2025-04-10T00:00:00",
+    "lastUpdatedDate": "2025-07-15T09:15:00"
+  },
+  {
+    "saName": "sa.SearchAPI.dev",
+    "dependentComponents": ["SearchEngine-04", "Indexer-04", "Crawler-04"],
+    "expiryDate": "2025-06-25T00:00:00",
+    "lastUpdatedDate": "2025-07-20T14:40:00"
+  },
+  {
+    "saName": "sa.BusinessIntelligence.prd",
+    "dependentComponents": ["Analytics-04", "DataProcessor-04", "Reporting-04"],
+    "expiryDate": "2025-08-20T00:00:00",
+    "lastUpdatedDate": "2025-07-25T10:25:00"
+  },
+  {
+    "saName": "sa.Messaging.dev",
+    "dependentComponents": ["Notification-04", "PushService-04", "SMS-04"],
+    "expiryDate": "2025-10-15T00:00:00",
+    "lastUpdatedDate": "2025-08-01T16:55:00"
+  },
+  {
+    "saName": "sa.Microservice.prd",
+    "dependentComponents": ["WebServer-05", "Database-05", "LoadBalancer-05"],
+    "expiryDate": "2025-12-05T00:00:00",
+    "lastUpdatedDate": "2025-08-05T11:10:00"
+  },
+  {
+    "saName": "sa.CacheService.dev",
+    "dependentComponents": ["APIServer-05", "Cache-05", "MessageQueue-05"],
+    "expiryDate": "2025-02-20T00:00:00",
+    "lastUpdatedDate": "2025-08-10T13:35:00"
+  },
+  {
+    "saName": "sa.DataWarehouse.prd",
+    "dependentComponents": ["FileServer-05", "Backup-05", "Monitoring-05"],
+    "expiryDate": "2025-05-30T00:00:00",
+    "lastUpdatedDate": "2025-08-15T08:50:00"
+  },
+  {
+    "saName": "sa.AccessControl.dev",
+    "dependentComponents": ["AuthServer-05", "LDAP-05", "SSO-05"],
+    "expiryDate": "2025-07-25T00:00:00",
+    "lastUpdatedDate": "2025-08-20T15:15:00"
+  },
+  {
+    "saName": "sa.Cryptography.prd",
+    "dependentComponents": ["PaymentGateway-05", "Encryption-05", "Security-05"],
+    "expiryDate": "2025-09-10T00:00:00",
+    "lastUpdatedDate": "2025-08-25T12:40:00"
+  },
+  {
+    "saName": "sa.MailService.dev",
+    "dependentComponents": ["EmailServer-05", "SMTP-05", "SpamFilter-05"],
+    "expiryDate": "2025-11-05T00:00:00",
+    "lastUpdatedDate": "2025-09-01T09:25:00"
+  },
+  {
+    "saName": "sa.AssetManagement.prd",
+    "dependentComponents": ["CDN-05", "StaticAssets-05", "ImageProcessor-05"],
+    "expiryDate": "2025-01-30T00:00:00",
+    "lastUpdatedDate": "2025-09-05T14:55:00"
+  },
+  {
+    "saName": "sa.SearchEngine2.dev",
+    "dependentComponents": ["SearchEngine-05", "Indexer-05", "Crawler-05"],
+    "expiryDate": "2025-03-15T00:00:00",
+    "lastUpdatedDate": "2025-09-10T10:30:00"
+  },
+  {
+    "saName": "sa.DataAnalytics.prd",
+    "dependentComponents": ["Analytics-05", "DataProcessor-05", "Reporting-05"],
+    "expiryDate": "2025-06-20T00:00:00",
+    "lastUpdatedDate": "2025-09-15T16:45:00"
+  },
+  {
+    "saName": "sa.NotificationService2.dev",
+    "dependentComponents": ["Notification-05", "PushService-05", "SMS-05"],
+    "expiryDate": "2025-08-05T00:00:00",
+    "lastUpdatedDate": "2025-09-20T11:20:00"
+  },
+  {
+    "saName": "sa.WebService.prd",
+    "dependentComponents": ["WebServer-06", "Database-06", "LoadBalancer-06"],
+    "expiryDate": "2025-10-30T00:00:00",
+    "lastUpdatedDate": "2025-09-25T13:35:00"
+  },
+  {
+    "saName": "sa.APIService.dev",
+    "dependentComponents": ["APIServer-06", "Cache-06", "MessageQueue-06"],
+    "expiryDate": "2025-12-15T00:00:00",
+    "lastUpdatedDate": "2025-10-01T08:50:00"
+  },
+  {
+    "saName": "sa.FileStorage.prd",
+    "dependentComponents": ["FileServer-06", "Backup-06", "Monitoring-06"],
+    "expiryDate": "2025-02-10T00:00:00",
+    "lastUpdatedDate": "2025-10-05T15:10:00"
+  },
+  {
+    "saName": "sa.Authentication.dev",
+    "dependentComponents": ["AuthServer-06", "LDAP-06", "SSO-06"],
+    "expiryDate": "2025-04-25T00:00:00",
+    "lastUpdatedDate": "2025-10-10T12:25:00"
+  },
+  {
+    "saName": "sa.PaymentService.prd",
+    "dependentComponents": ["PaymentGateway-06", "Encryption-06", "Security-06"],
+    "expiryDate": "2025-07-10T00:00:00",
+    "lastUpdatedDate": "2025-10-15T09:40:00"
+  },
+  {
+    "saName": "sa.EmailService.dev",
+    "dependentComponents": ["EmailServer-06", "SMTP-06", "SpamFilter-06"],
+    "expiryDate": "2025-09-25T00:00:00",
+    "lastUpdatedDate": "2025-10-20T14:55:00"
+  },
+  {
+    "saName": "sa.ContentDelivery.prd",
+    "dependentComponents": ["CDN-06", "StaticAssets-06", "ImageProcessor-06"],
+    "expiryDate": "2025-11-20T00:00:00",
+    "lastUpdatedDate": "2025-10-25T10:15:00"
+  },
+  {
+    "saName": "sa.SearchService.dev",
+    "dependentComponents": ["SearchEngine-06", "Indexer-06", "Crawler-06"],
+    "expiryDate": "2025-01-05T00:00:00",
+    "lastUpdatedDate": "2025-11-01T16:30:00"
+  },
+  {
+    "saName": "sa.BusinessAnalytics.prd",
+    "dependentComponents": ["Analytics-06", "DataProcessor-06", "Reporting-06"],
+    "expiryDate": "2025-03-30T00:00:00",
+    "lastUpdatedDate": "2025-11-05T11:45:00"
+  },
+  {
+    "saName": "sa.MessagingService.dev",
+    "dependentComponents": ["Notification-06", "PushService-06", "SMS-06"],
+    "expiryDate": "2025-06-15T00:00:00",
+    "lastUpdatedDate": "2025-11-10T13:20:00"
+  },
+  {
+    "saName": "sa.ApplicationServer.prd",
+    "dependentComponents": ["WebServer-07", "Database-07", "LoadBalancer-07"],
+    "expiryDate": "2025-08-30T00:00:00",
+    "lastUpdatedDate": "2025-11-15T08:35:00"
+  },
+  {
+    "saName": "sa.CacheServer.dev",
+    "dependentComponents": ["APIServer-07", "Cache-07", "MessageQueue-07"],
+    "expiryDate": "2025-10-15T00:00:00",
+    "lastUpdatedDate": "2025-11-20T15:50:00"
+  },
+  {
+    "saName": "sa.StorageService.prd",
+    "dependentComponents": ["FileServer-07", "Backup-07", "Monitoring-07"],
+    "expiryDate": "2025-12-30T00:00:00",
+    "lastUpdatedDate": "2025-11-25T12:10:00"
+  },
+  {
+    "saName": "sa.IdentityService.dev",
+    "dependentComponents": ["AuthServer-07", "LDAP-07", "SSO-07"],
+    "expiryDate": "2025-02-05T00:00:00",
+    "lastUpdatedDate": "2025-12-01T09:25:00"
+  },
+  {
+    "saName": "sa.FinancialService.prd",
+    "dependentComponents": ["PaymentGateway-07", "Encryption-07", "Security-07"],
+    "expiryDate": "2025-05-20T00:00:00",
+    "lastUpdatedDate": "2025-12-05T14:40:00"
+  },
+  {
+    "saName": "sa.CommunicationService.dev",
+    "dependentComponents": ["EmailServer-07", "SMTP-07", "SpamFilter-07"],
+    "expiryDate": "2025-07-05T00:00:00",
+    "lastUpdatedDate": "2025-12-10T10:55:00"
+  },
+  {
+    "saName": "sa.ContentService.prd",
+    "dependentComponents": ["CDN-07", "StaticAssets-07", "ImageProcessor-07"],
+    "expiryDate": "2025-09-20T00:00:00",
+    "lastUpdatedDate": "2025-12-15T16:15:00"
+  },
+  {
+    "saName": "sa.SearchEngineService.dev",
+    "dependentComponents": ["SearchEngine-07", "Indexer-07", "Crawler-07"],
+    "expiryDate": "2025-11-10T00:00:00",
+    "lastUpdatedDate": "2025-12-20T11:30:00"
+  },
+  {
+    "saName": "sa.AnalyticsService.prd",
+    "dependentComponents": ["Analytics-07", "DataProcessor-07", "Reporting-07"],
+    "expiryDate": "2025-01-25T00:00:00",
+    "lastUpdatedDate": "2025-12-25T13:45:00"
+  },
+  {
+    "saName": "sa.NotificationService.dev",
+    "dependentComponents": ["Notification-07", "PushService-07", "SMS-07"],
+    "expiryDate": "2025-04-10T00:00:00",
+    "lastUpdatedDate": "2025-12-30T08:20:00"
+  }
+]

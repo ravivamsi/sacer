@@ -21,6 +21,58 @@
         }
         .btn-rotate {
             min-width: 120px;
+            position: relative;
+            z-index: 1;
+            pointer-events: auto !important;
+        }
+        .btn-rotate.disabled {
+            opacity: 0.6;
+            cursor: pointer !important;
+            pointer-events: auto !important;
+        }
+        .btn-rotate.enabled {
+            opacity: 1;
+            cursor: pointer;
+        }
+        .btn-rotate.loading {
+            position: relative;
+        }
+        .btn-rotate.loading .btn-text {
+            visibility: hidden;
+        }
+        .btn-rotate.loading::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            margin: auto;
+            border: 2px solid transparent;
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .btn-rotate.success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn-rotate.success .btn-text {
+            visibility: hidden;
+        }
+        .btn-rotate.success::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+        }
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
         .filter-section {
             background-color: #f8f9fa;
@@ -156,7 +208,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="rotatePasswordBtn" disabled>Rotate Password</button>
+                    <button type="button" class="btn btn-primary" id="rotatePasswordBtn" disabled>Rotate Cert</button>
                 </div>
             </div>
         </div>
@@ -167,6 +219,7 @@
     <script>
         let currentCertId = null;
         let passwordModal = null;
+        let validatedCerts = new Set();
 
         $(document).ready(function() {
             passwordModal = new bootstrap.Modal(document.getElementById('passwordModal'));
@@ -181,6 +234,20 @@
             $('#rotatePasswordBtn').click(function() {
                 if (currentCertId && $('#passwordInput').val()) {
                     rotatePassword(currentCertId, $('#passwordInput').val());
+                }
+            });
+            
+            // Test button clickability
+            $(document).on('click', '.btn-rotate', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Button clicked:', $(this).attr('onclick'));
+                console.log('Button data-cert-id:', $(this).data('cert-id'));
+                
+                // Get the cert ID and call the handler
+                const certId = $(this).data('cert-id');
+                if (certId) {
+                    handleRotateCertClick(certId);
                 }
             });
         });
@@ -245,14 +312,25 @@
                         <td class="${statusClass}">${statusText}</td>
                         <td>${lastUpdated}</td>
                         <td>
-                            <button class="btn btn-sm btn-primary btn-rotate" onclick="openPasswordModal(${cert.id})">
-                                <i class="fas fa-key me-1"></i>Rotate Password
+                            <button class="btn btn-sm btn-primary btn-rotate disabled" data-cert-id="${cert.id}" type="button">
+                                <span class="btn-text"><i class="fas fa-key me-1"></i>Rotate Cert</span>
                             </button>
                         </td>
                     </tr>
                 `;
                 tbody.append(row);
             });
+        }
+
+        function handleRotateCertClick(certId) {
+            console.log('Rotate Cert clicked for ID:', certId);
+            if (validatedCerts.has(certId)) {
+                // If already validated, start the rotation process
+                startRotationProcess(certId);
+            } else {
+                // If not validated, show password modal
+                openPasswordModal(certId);
+            }
         }
 
         function openPasswordModal(certId) {
@@ -293,16 +371,41 @@
             $.post(`/api/certificates/${certId}/rotate-password`, { password: password })
                 .done(function(data) {
                     passwordModal.hide();
-                    loadCertificates();
-                    showAlert('Password rotated successfully!', 'success');
+                    // Mark this certificate as validated and enable the button
+                    validatedCerts.add(certId);
+                    enableCertButton(certId);
+                    showAlert('Password validated! Certificate button is now enabled.', 'success');
                 })
                 .fail(function(xhr) {
                     if (xhr.status === 400) {
                         showAlert('Invalid password format!', 'danger');
                     } else {
-                        showAlert('Error rotating password!', 'danger');
+                        showAlert('Error validating password!', 'danger');
                     }
                 });
+        }
+
+        function startRotationProcess(certId) {
+            const button = $(`button[data-cert-id="${certId}"]`);
+            
+            // Show loading state
+            button.removeClass('enabled').addClass('loading');
+            
+            // Simulate 5-second process
+            setTimeout(function() {
+                button.removeClass('loading').addClass('success');
+                
+                // Reset to enabled state after 2 seconds
+                setTimeout(function() {
+                    button.removeClass('success').addClass('enabled');
+                    showAlert('Certificate rotated successfully!', 'success');
+                }, 2000);
+            }, 5000);
+        }
+
+        function enableCertButton(certId) {
+            const button = $(`button[data-cert-id="${certId}"]`);
+            button.removeClass('disabled').addClass('enabled');
         }
 
         function clearFilters() {
