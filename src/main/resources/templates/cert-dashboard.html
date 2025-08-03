@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Dashboard - SACER</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .navbar-brand {
+            font-weight: bold;
+            color: #2c3e50 !important;
+        }
+        .card {
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            border: 1px solid rgba(0, 0, 0, 0.125);
+        }
+        .table th {
+            background-color: #f8f9fa;
+            border-top: none;
+        }
+        .btn-rotate {
+            min-width: 120px;
+        }
+        .filter-section {
+            background-color: #f8f9fa;
+            border-radius: 0.375rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .password-input {
+            max-width: 200px;
+        }
+        .expired {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .warning {
+            color: #ffc107;
+            font-weight: bold;
+        }
+        .normal {
+            color: #28a745;
+        }
+        .loading {
+            text-align: center;
+            padding: 2rem;
+        }
+        .dn-text {
+            font-family: monospace;
+            font-size: 0.9em;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-shield-alt me-2"></i>SACER Dashboard
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/sa-dashboard">
+                    <i class="fas fa-user-cog me-1"></i>Service Accounts
+                </a>
+                <a class="nav-link active" href="/cert-dashboard">
+                    <i class="fas fa-certificate me-1"></i>Certificates
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <h2><i class="fas fa-certificate me-2"></i>Certificate Dashboard</h2>
+                
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="certNameFilter" class="form-label">Certificate Name Filter:</label>
+                            <input type="text" class="form-control" id="certNameFilter" placeholder="Enter certificate name...">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="daysToExpireFilter" class="form-label">Days to Expire:</label>
+                            <select class="form-select" id="daysToExpireFilter">
+                                <option value="">All</option>
+                                <option value="30">30 days</option>
+                                <option value="60">60 days</option>
+                                <option value="90">90 days</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-end">
+                            <button class="btn btn-primary me-2" onclick="loadCertificates()">
+                                <i class="fas fa-search me-1"></i>Search
+                            </button>
+                            <button class="btn btn-secondary" onclick="clearFilters()">
+                                <i class="fas fa-times me-1"></i>Clear
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certificates Table -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-table me-2"></i>Certificates</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="loading" class="loading">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mt-2">Loading certificates...</p>
+                        </div>
+                        <div id="tableContainer" style="display: none;">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Certificate Name</th>
+                                            <th>Dependent Components</th>
+                                            <th>DN</th>
+                                            <th>Expiry Date</th>
+                                            <th>Days to Expire</th>
+                                            <th>Last Updated</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="certTableBody">
+                                        <!-- Data will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Password Modal -->
+    <div class="modal fade" id="passwordModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Rotate Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Enter a password with exactly 3 letters and 12 digits:</p>
+                    <input type="password" class="form-control password-input" id="passwordInput" 
+                           placeholder="e.g., ABC123456789012" maxlength="15">
+                    <div id="passwordValidation" class="mt-2"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="rotatePasswordBtn" disabled>Rotate Password</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let currentCertId = null;
+        let passwordModal = null;
+
+        $(document).ready(function() {
+            passwordModal = new bootstrap.Modal(document.getElementById('passwordModal'));
+            loadCertificates();
+            
+            // Password validation
+            $('#passwordInput').on('input', function() {
+                validatePassword($(this).val());
+            });
+            
+            // Rotate password button
+            $('#rotatePasswordBtn').click(function() {
+                if (currentCertId && $('#passwordInput').val()) {
+                    rotatePassword(currentCertId, $('#passwordInput').val());
+                }
+            });
+        });
+
+        function loadCertificates() {
+            $('#loading').show();
+            $('#tableContainer').hide();
+            
+            const certName = $('#certNameFilter').val();
+            const daysToExpire = $('#daysToExpireFilter').val();
+            
+            let url = '/api/certificates/search?';
+            if (certName) url += `certName=${encodeURIComponent(certName)}&`;
+            if (daysToExpire) url += `daysToExpire=${daysToExpire}`;
+            
+            $.get(url)
+                .done(function(data) {
+                    displayCertificates(data);
+                })
+                .fail(function(xhr, status, error) {
+                    console.error('Error loading certificates:', error);
+                    $('#tableContainer').html('<div class="alert alert-danger">Error loading data</div>');
+                })
+                .always(function() {
+                    $('#loading').hide();
+                    $('#tableContainer').show();
+                });
+        }
+
+        function displayCertificates(certificates) {
+            const tbody = $('#certTableBody');
+            tbody.empty();
+            
+            if (certificates.length === 0) {
+                tbody.append('<tr><td colspan="7" class="text-center">No certificates found</td></tr>');
+                return;
+            }
+            
+            certificates.forEach(function(cert) {
+                const daysToExpire = cert.daysToExpire;
+                let statusClass = 'normal';
+                let statusText = daysToExpire + ' days';
+                
+                if (daysToExpire < 0) {
+                    statusClass = 'expired';
+                    statusText = 'EXPIRED';
+                } else if (daysToExpire <= 30) {
+                    statusClass = 'warning';
+                    statusText = daysToExpire + ' days';
+                }
+                
+                const components = cert.dependentComponents ? cert.dependentComponents.join(', ') : '';
+                const expiryDate = new Date(cert.expiryDate).toLocaleDateString();
+                const lastUpdated = new Date(cert.lastUpdatedDate).toLocaleDateString();
+                
+                const row = `
+                    <tr>
+                        <td><strong>${cert.certName}</strong></td>
+                        <td>${components}</td>
+                        <td><span class="dn-text">${cert.dn}</span></td>
+                        <td>${expiryDate}</td>
+                        <td class="${statusClass}">${statusText}</td>
+                        <td>${lastUpdated}</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary btn-rotate" onclick="openPasswordModal(${cert.id})">
+                                <i class="fas fa-key me-1"></i>Rotate Password
+                            </button>
+                        </td>
+                    </tr>
+                `;
+                tbody.append(row);
+            });
+        }
+
+        function openPasswordModal(certId) {
+            currentCertId = certId;
+            $('#passwordInput').val('');
+            $('#passwordValidation').html('');
+            $('#rotatePasswordBtn').prop('disabled', true);
+            passwordModal.show();
+        }
+
+        function validatePassword(password) {
+            const validation = $('#passwordValidation');
+            const rotateBtn = $('#rotatePasswordBtn');
+            
+            if (!password) {
+                validation.html('<span class="text-muted">Enter password</span>');
+                rotateBtn.prop('disabled', true);
+                return;
+            }
+            
+            $.get('/api/certificates/validate-password', { password: password })
+                .done(function(isValid) {
+                    if (isValid) {
+                        validation.html('<span class="text-success"><i class="fas fa-check"></i> Valid password</span>');
+                        rotateBtn.prop('disabled', false);
+                    } else {
+                        validation.html('<span class="text-danger"><i class="fas fa-times"></i> Password must contain exactly 3 letters and 12 digits</span>');
+                        rotateBtn.prop('disabled', true);
+                    }
+                })
+                .fail(function() {
+                    validation.html('<span class="text-danger">Error validating password</span>');
+                    rotateBtn.prop('disabled', true);
+                });
+        }
+
+        function rotatePassword(certId, password) {
+            $.post(`/api/certificates/${certId}/rotate-password`, { password: password })
+                .done(function(data) {
+                    passwordModal.hide();
+                    loadCertificates();
+                    showAlert('Password rotated successfully!', 'success');
+                })
+                .fail(function(xhr) {
+                    if (xhr.status === 400) {
+                        showAlert('Invalid password format!', 'danger');
+                    } else {
+                        showAlert('Error rotating password!', 'danger');
+                    }
+                });
+        }
+
+        function clearFilters() {
+            $('#certNameFilter').val('');
+            $('#daysToExpireFilter').val('');
+            loadCertificates();
+        }
+
+        function showAlert(message, type) {
+            const alert = `
+                <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+            $('.container').prepend(alert);
+        }
+    </script>
+</body>
+</html> 
